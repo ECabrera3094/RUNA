@@ -1,3 +1,5 @@
+import time
+
 from Locators.Locators import MyLocators
 
 class MyLogoutPage():
@@ -9,7 +11,8 @@ class MyLogoutPage():
 
     def click_Active_User(self):
         link_Active_User = self.driver.find_element_by_xpath(self.XPath_Active_User).click()
+        time.sleep(0.5)
 
     def click_Logout(self):
         link_Logout = self.driver.find_element_by_css_selector(self.CSS_Logout).click()
-
+        time.sleep(0.5)
