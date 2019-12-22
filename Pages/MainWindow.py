@@ -22,6 +22,3 @@ class MyMainWindow():
 
     def click_Nominas_Activas(self):
         click_Nominas_Activas = self.driver.find_element_by_link_text(self.Text_Nominas_Activaas).click()
-
-
-
