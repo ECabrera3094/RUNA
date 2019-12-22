@@ -25,14 +25,12 @@ class RUNA(unittest.TestCase):
         driver.get("http://automation.runademos.info/login")
 
         # Explicit Wait
-        textbox = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located( (By.ID, "email") )
-        )
-
-        if textbox is not None:
-            pass
-        else:
-            print("TextBox Never Found.")
+        try:
+            textbox = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.ID, "email"))
+            )
+        except:
+            driver.refresh()
 
         # Creamos el Objeto 'login' INSTANCIANDO a la Clase MyLoginPage().
         login = MyLoginPage(driver)
@@ -44,7 +42,7 @@ class RUNA(unittest.TestCase):
 
         # Creamos el Objeto 'mainWindow' INSTANCIANDO a la Clase MyMainWindow().
         mainWindow = MyMainWindow(driver)
-        mainWindow.click_ChangePassword()
+        #mainWindow.click_ChangePassword()
         mainWindow.click_Nominas()
         mainWindow.click_Close_Video()
         mainWindow.click_Nominas_Activas()
@@ -56,6 +54,26 @@ class RUNA(unittest.TestCase):
         nominas.enter_Start_Date()
         nominas.enter_Date_Incidence()
         nominas.click_Acept_New_Manual_Nomina()
+        nominas.click_Comenzar_Button()
+
+        # Explicit Wait - Search TextBox
+        try:
+            search_Textbox = WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.ID, "search"))
+            )
+        except:
+            driver.refresh()
+
+        nominas.click_Detail_Employee_1()
+        nominas.click_Modify_Salary()
+        nominas.click_Accept_Modify_Salary()
+        nominas.click_Detail_Employee_3()
+        nominas.click_Delete_Employee()
+        nominas.click_Continuar()
+        nominas.click_Uncheckbox()
+        nominas.click_Continuar()
+        nominas.click_Calcular()
+        nominas.click_Delete_Nomina()
 
         # Creamos el Objeto 'logout' INSTANCIANDO a la Clase MyLogoutPage().
         logout = MyLogoutPage(driver)
